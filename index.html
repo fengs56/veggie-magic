@@ -121,6 +121,35 @@
         .checkbox-label:hover {
             color: #333;
         }
+        
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .download-button {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+        
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
+        }
+        
+        .download-button:active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -164,6 +193,36 @@
                 setCurrentMeal(''); // Clear current meal when filter changes
             };
             
+            const downloadCSV = () => {
+                let mealsToDownload = vegetarianMeals;
+                
+                if (miracleFruitFilter) {
+                    mealsToDownload = vegetarianMeals.filter(meal => meal.miracleFruitCompatible);
+                }
+                
+                // Create CSV content
+                const headers = ['Recipe Name', 'Miracle Fruit Compatible'];
+                const csvContent = [
+                    headers.join(','),
+                    ...mealsToDownload.map(meal => 
+                        `"${meal.name}",${meal.miracleFruitCompatible ? 'Yes' : 'No'}`
+                    )
+                ].join('\n');
+                
+                // Create blob and download link
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                
+                link.setAttribute('href', url);
+                link.setAttribute('download', 'veggie-magic-recipes.csv');
+                link.style.visibility = 'hidden';
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+            
             return (
                 <div className="container">
                     <h1> Veggie Magic </h1>
@@ -192,9 +251,14 @@
                         )}
                     </div>
                     
-                    <button className="button" onClick={getRandomMeal}>
-                        Get New Idea
-                    </button>
+                    <div className="button-container">
+                        <button className="button" onClick={getRandomMeal}>
+                            Get New Idea
+                        </button>
+                        <button className="download-button" onClick={downloadCSV}>
+                            Download CSV
+                        </button>
+                    </div>
                 </div>
             );
         }
