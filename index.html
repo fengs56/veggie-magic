@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veggie Magic - Vegetarian Meal Ideas</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        
+        .meal-display {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .meal-name {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .button:active {
+            transform: translateY(0);
+        }
+        
+        .filter-section {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checkbox-label {
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #555;
+            user-select: none;
+        }
+        
+        .checkbox-label:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+        
+        let vegetarianMeals = [];
+        
+        // Load meals from JSON file
+        fetch('meals.json')
+            .then(response => response.json())
+            .then(data => {
+                vegetarianMeals = data.meals;
+            })
+            .catch(error => console.error('Error loading meals:', error));
+        
+        function VeggieMagic() {
+            const [currentMeal, setCurrentMeal] = useState('');
+            const [miracleFruitFilter, setMiracleFruitFilter] = useState(false);
+            
+            const getRandomMeal = () => {
+                let availableMeals = vegetarianMeals;
+                
+                if (miracleFruitFilter) {
+                    availableMeals = vegetarianMeals.filter(meal => meal.miracleFruitCompatible);
+                }
+                
+                if (availableMeals.length === 0) {
+                    setCurrentMeal('No miracle fruit compatible meals found!');
+                    return;
+                }
+                
+                const randomIndex = Math.floor(Math.random() * availableMeals.length);
+                setCurrentMeal(availableMeals[randomIndex].name);
+            };
+            
+            const toggleMiracleFruitFilter = () => {
+                setMiracleFruitFilter(!miracleFruitFilter);
+                setCurrentMeal(''); // Clear current meal when filter changes
+            };
+            
+            return (
+                <div className="container">
+                    <h1> Veggie Magic </h1>
+                    <p className="subtitle">Discover delicious vegetarian meal ideas</p>
+                    
+                    <div className="filter-section">
+                        <div className="checkbox-container">
+                            <input 
+                                type="checkbox" 
+                                id="miracle-fruit" 
+                                className="checkbox"
+                                checked={miracleFruitFilter}
+                                onChange={toggleMiracleFruitFilter}
+                            />
+                            <label htmlFor="miracle-fruit" className="checkbox-label">
+                                Miracle Fruit Compatible Only
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div className="meal-display">
+                        {currentMeal ? (
+                            <span className="meal-name">{currentMeal}</span>
+                        ) : (
+                            <span>Click below for your first idea!</span>
+                        )}
+                    </div>
+                    
+                    <button className="button" onClick={getRandomMeal}>
+                        Get New Idea
+                    </button>
+                </div>
+            );
+        }
+        
+        ReactDOM.render(<VeggieMagic />, document.getElementById('root'));
+    </script>
+</body>
+</html>

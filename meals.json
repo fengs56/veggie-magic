@@ -1,0 +1,124 @@
+{
+  "meals": [
+    {
+      "name": "Lemon Herb Pasta with Asparagus",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Spinach and Feta Stuffed Bell Peppers",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Pickled Beet and Arugula Salad",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Roasted Vegetable Quinoa Bowl",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Grapefruit and Avocado Salad",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Butternut Squash Soup with Sage",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Lemon Garlic Tofu with Broccoli",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Eggplant Parmesan with Marinara",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Kimchi Fried Rice with Tofu",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Chickpea Curry with Coconut Milk",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Zucchini Noodles with Lemon Pesto",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Sweet Potato and Black Bean Tacos",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Greek Salad with Feta and Olives",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Sauerkraut and Potato Pierogies",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Roasted Brussels Sprouts with Balsamic",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Lemon Dill Rice Pilaf",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Lentil Shepherd's Pie",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Pickled Onion and Mushroom Tacos",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Portobello Mushroom Burgers",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Vegetable Fried Rice with Pickled Ginger",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Spinach and Artichoke Pasta",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Yogurt and Cucumber Raita",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Roasted Cauliflower with Tahini",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Lemon Chickpea Salad Sandwich",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Black Bean Quesadillas",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Vegetable Pad Thai with Tamarind",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Mediterranean Orzo Salad",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Pickled Vegetable Spring Rolls",
+      "miracleFruitCompatible": true
+    },
+    {
+      "name": "Butternut Squash Mac and Cheese",
+      "miracleFruitCompatible": false
+    },
+    {
+      "name": "Lemon Herb Quinoa Bowl",
+      "miracleFruitCompatible": true
+    }
+  ]
+}
